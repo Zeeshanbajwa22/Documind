@@ -1,0 +1,4 @@
+echo venv/> .dockerignore
+echo .env>> .dockerignore
+echo __pycache__/>> .dockerignore
+echo .git/>> .dockerignore
