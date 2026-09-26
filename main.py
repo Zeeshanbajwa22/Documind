@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from pydantic import BaseModel
 from openai import OpenAI
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
 from langchain_chroma import Chroma
 
 # Load API key
@@ -18,7 +18,10 @@ client = OpenAI(
 )
 
 # Load embedding model + vector store once, when the API starts
-embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+embedding_model = HuggingFaceEndpointEmbeddings(
+    model="sentence-transformers/all-MiniLM-L6-v2",
+    huggingfacehub_api_token=os.getenv("HF_TOKEN")
+)
 vectorstore = Chroma(
     persist_directory="./chroma_db",
     embedding_function=embedding_model
