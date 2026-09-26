@@ -18,7 +18,7 @@ client = OpenAI(
 )
 
 # Load embedding model + vector store once, when the API starts
-embedding_model = HuggingFaceEmbeddings(model_name="BAAI/bge-base-en-v1.5")
+embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 vectorstore = Chroma(
     persist_directory="./chroma_db",
     embedding_function=embedding_model

@@ -28,7 +28,7 @@ print("Loading embedding model... (first time takes a bit longer)")
 
 # Step 3: Load the embedding model
 print("Loading embedding model... (first time takes a bit longer)")
-embedding_model = HuggingFaceEmbeddings(model_name="BAAI/bge-base-en-v1.5")
+embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
 # Step 4: Create the vector database and store our chunks in it
 print("Creating vector store...")
