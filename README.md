@@ -6,6 +6,13 @@ retrieves the most relevant sections of the document and generates accurate,
 grounded answers using an LLM — instead of relying on the model's general 
 knowledge, which can hallucinate.
 
+## 🌐 Live Demo
+
+Try the deployed API here: **https://documind-rjmo.onrender.com**
+
+- Interactive API docs: https://documind-rjmo.onrender.com/docs
+- Note: hosted on a free-tier server — the first request after inactivity may take 30-60 seconds to wake up.
+
 ## Features
 
 - 📄 Load and process PDF documents
@@ -16,12 +23,26 @@ knowledge, which can hallucinate.
 
 ## Tech Stack
 
+## Tech Stack
+
 - **Python**
+- **FastAPI** — production backend API
 - **LangChain** — orchestrates the retrieval pipeline
 - **ChromaDB** — vector database for storing document embeddings
-- **HuggingFace Embeddings** (`BAAI/bge-base-en-v1.5`) — converts text into searchable vectors
+- **HuggingFace Inference API** — hosted embeddings (chosen to keep memory usage low for free-tier deployment)
 - **Groq API** (`openai/gpt-oss-120b`) — fast LLM inference for answer generation
-- **Streamlit** — web-based chat interface
+- **Docker** — containerization (Dockerfile included; deployment currently uses Render's native Python runtime)
+- **Render** — cloud deployment
+- **Streamlit** — local chat interface (optional, for local testing)
+
+
+## Engineering Notes
+
+This project was deployed on a memory-constrained free-tier server (512MB RAM). 
+Initial attempts using local embedding models (PyTorch + sentence-transformers) 
+exceeded this limit. The fix: switched to HuggingFace's hosted Inference API for 
+embeddings, removing the need to load a full ML framework into the container — 
+a common real-world tradeoff between self-hosted and API-based inference.
 
 ## How It Works
 
